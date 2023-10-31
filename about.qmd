@@ -5,7 +5,7 @@ sidebar: false
 
 # Education
 
--   B.S., Industrial Engineering, Hacettepe University, Turkey, ongoing.
+-   B.S., Industrial Engineering, Hacettepe University, Turkeyy, ongoing.
 
 # Work Experience
 
