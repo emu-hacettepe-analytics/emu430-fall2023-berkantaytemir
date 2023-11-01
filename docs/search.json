@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Our Course Project",
+    "section": "",
+    "text": "I’m honored to be a member of the Rebrick project team.\nBelow, you’ll find a brief summary of our project. To access a detailed project description, please go to ( right now it is not available)\nSummary\nIt will be described soon\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Analytics Lab",
+    "section": "",
+    "text": "Hello! My name is Berkant Aytemir :)\nThis is my personal webpage.\nPlease stay tuned to follow my works on data analytics, blog posts, and more.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "assignments/assignment-2.html",
+    "href": "assignments/assignment-2.html",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "Assignment 2\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "B.S., Industrial Engineering, Hacettepe University, Turkey, ongoing.\nWestsächsischen Hochschule Zwickau 03.23-08.23"
+  },
+  {
+    "objectID": "about.html#internships",
+    "href": "about.html#internships",
+    "title": "About Me",
+    "section": "Internships",
+    "text": "Internships\n\nSedat Tahir - Cook 07.22-08.22\nTUSAŞ 08.23-09.23"
+  },
+  {
+    "objectID": "assignments/assignment-1.html",
+    "href": "assignments/assignment-1.html",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "I was watching this video :https://www.youtube.com/watch?v=qPk0YEKhqB8&list=PLqzoL9-eJTNBDdKgJgJzaQcY6OXmsXAHU&index=4. It shows us how to take datas from an excel sheet. Basically to take the excel data , we need to convert the excel data into CSV ( Comma Seperated Values) or txt so that we can assign the datas by using this format :\ndata1 &lt;- read.csv(file.choose() , reader = TRUE or False by taking the capital )\nand the R immediately opens a interface for you to choose the direction of the data. Afterwards you can call this data by only writing data1.\nAlso you we can use read.table or read.delim according to taken datas class.\n\n\nFirst thing I have realized was the difference of the display of python and R . The R has more complex and detailed display compared to the Python. Such as files , plots , packages , connections and background job interfaces.\nSecondly, the syntax is different compared to python. For instance : you can not use the same “=” equality operator in R by “=” there is a difference between them . In R instead of “=” we should use “&lt;-” to provide exact same operation\nLast but not least, Indentation differs. For example imagine you are trying to define a for loop in both programming language. In python the indentation level differs but in R programming the {} usage solves the indentation problem."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#b",
+    "href": "assignments/assignment-1.html#b",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "First thing I have realized was the difference of the display of python and R . The R has more complex and detailed display compared to the Python. Such as files , plots , packages , connections and background job interfaces.\nSecondly, the syntax is different compared to python. For instance : you can not use the same “=” equality operator in R by “=” there is a difference between them . In R instead of “=” we should use “&lt;-” to provide exact same operation\nLast but not least, Indentation differs. For example imagine you are trying to define a for loop in both programming language. In python the indentation level differs but in R programming the {} usage solves the indentation problem."
+  },
+  {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "My Assignments",
+    "section": "",
+    "text": "On this page, I showcase the assignment I conducted for the [term and year, e.g. Fall 2023] EMU 430 Data Analytics course.\nPlease use left menu to navigate through my assignments.\nThe most recent update to this page was made on October 25, 2023\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "My Blog",
+    "section": "",
+    "text": "This page is under construction.\n\n\n\n Back to top"
+  }
+]
