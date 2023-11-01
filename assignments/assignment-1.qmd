@@ -13,3 +13,9 @@ title: "Assignment 1"
 **Also you we can use read.table or read.delim according to taken datas class.**
 
 ## (b)
+
+**First thing I have realized was the difference of the display of python and R . The R has more complex and detailed display compared to the Python. Such as files , plots , packages , connections and background job interfaces.**
+
+**Secondly, the syntax is different compared to python. For instance : you can not use the same "=" equality operator in R by "=" there is a difference between them . In R instead of "=" we should use "\<-" to provide exact same operation**
+
+**Last but not least, Indentation differs. For example imagine you are trying to define a for loop in both programming language. In python the indentation level differs but in R programming the {} usage solves the indentation problem.**
