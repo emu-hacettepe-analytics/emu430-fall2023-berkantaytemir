@@ -22,11 +22,11 @@ website:
             
     tools:
       - icon: github
-        href: https://twitter.com
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/berkantaytemir
+      - icon: instagram
+        href: https://www.instagram.com/aytemirberkant/
       - icon: linkedin
-        href: https://linkedin.com
+        href: https://www.linkedin.com/in/berkant-aytemir-8798111ba/
 
   sidebar:
     - title: "Assignments"
