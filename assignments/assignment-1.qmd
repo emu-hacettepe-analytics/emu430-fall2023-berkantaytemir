@@ -19,3 +19,24 @@ title: "Assignment 1"
 **Secondly, the syntax is different compared to python. For instance : you can not use the same "=" equality operator in R by "=" there is a difference between them . In R instead of "=" we should use "\<-" to provide exact same operation**
 
 **Last but not least, Indentation differs. For example imagine you are trying to define a for loop in both programming language. In python the indentation level differs but in R programming the {} usage solves the indentation problem.**
+
+# (c)
+
+The input:
+
+**install.packages("dslabs")**
+
+**library(dslabs)**
+
+**head("na_example")**
+
+**print(na_example)**
+
+**str(na_example) no_na_example\<-\
+ifelse(is.na(na_example),0,na_example) #this code is in same line , they are attached but due to the lack of space in R there is a second paragraph**
+
+**print(no_na_example)**
+
+**sum(is.na(na_example))**
+
+The output![The output](images/Screenshot_6.png)

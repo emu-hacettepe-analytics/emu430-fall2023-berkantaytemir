@@ -175,6 +175,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#b" id="toc-b" class="nav-link" data-scroll-target="#b">(b)</a></li>
   </ul></li>
+  <li><a href="#c" id="toc-c" class="nav-link" data-scroll-target="#c">(c)</a></li>
   </ul>
 </nav>
 </nav>
@@ -213,9 +214,22 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>First thing I have realized was the difference of the display of python and R . The R has more complex and detailed display compared to the Python. Such as files , plots , packages , connections and background job interfaces.</strong></p>
 <p><strong>Secondly, the syntax is different compared to python. For instance : you can not use the same “=” equality operator in R by “=” there is a difference between them . In R instead of “=” we should use “&lt;-” to provide exact same operation</strong></p>
 <p><strong>Last but not least, Indentation differs. For example imagine you are trying to define a for loop in both programming language. In python the indentation level differs but in R programming the {} usage solves the indentation problem.</strong></p>
-
-
 </section>
+</section>
+<section id="c" class="level1">
+<h1>(c)</h1>
+<p>The input:</p>
+<p><strong>install.packages(“dslabs”)</strong></p>
+<p><strong>library(dslabs)</strong></p>
+<p><strong>head(“na_example”)</strong></p>
+<p><strong>print(na_example)</strong></p>
+<p><strong>str(na_example) no_na_example&lt;-<br>
+ifelse(is.na(na_example),0,na_example) #this code is in same line , they are attached but due to the lack of space in R there is a second paragraph</strong></p>
+<p><strong>print(no_na_example)</strong></p>
+<p><strong>sum(is.na(na_example))</strong></p>
+<p>The output<img src="images/Screenshot_6.png" class="img-fluid" alt="The output"></p>
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
