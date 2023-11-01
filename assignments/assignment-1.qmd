@@ -2,16 +2,14 @@
 title: "Assignment 1"
 ---
 
-# Assignment 1
-
 # (a) 
 
-I was watching this video :<https://www.youtube.com/watch?v=qPk0YEKhqB8&list=PLqzoL9-eJTNBDdKgJgJzaQcY6OXmsXAHU&index=4>. It shows us how to take datas from an excel sheet. Basically to take the excel data , we need to convert the excel data into CSV ( Comma Seperated Values) or txt so that we can assign the datas by using this format :
+**I was watching this video :<https://www.youtube.com/watch?v=qPk0YEKhqB8&list=PLqzoL9-eJTNBDdKgJgJzaQcY6OXmsXAHU&index=4>. It shows us how to take datas from an excel sheet. Basically to take the excel data , we need to convert the excel data into CSV ( Comma Seperated Values) or txt so that we can assign the datas by using this format :**
 
-data1 \<- read.csv(file.choose() , reader = TRUE or False by taking the capital )
+**data1 \<- read.csv(file.choose() , reader = TRUE or False by taking the capital )**
 
-and the R immediately opens a interface for you to choose the direction of the data. Afterwards you can call this data by only writing data1.
+**and the R immediately opens a interface for you to choose the direction of the data. Afterwards you can call this data by only writing data1.**
 
-Also you we can use read.table or read.delim according to taken datas class.
+**Also you we can use read.table or read.delim according to taken datas class.**
 
 ## (b)

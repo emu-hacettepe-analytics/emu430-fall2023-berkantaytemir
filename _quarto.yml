@@ -5,6 +5,7 @@ project:
 website:
   title: "Berkant AYTEMIR's Analytics Lab"
   navbar:
+    background: '#111111'
     search: true
     left:
       - text: Home
@@ -46,11 +47,14 @@ website:
     border: true
 format:
   html:
+    mainfont : arial
+    fontcolor: "#FFFCFC"
+    linkcolor: "#F49F9F"
     toc: true
     toc-location: left
     theme: 
-      light: pulse 
-      dark: superhero
+      light: darkly
+      dark: darkly
     css: styles.css
 
 
