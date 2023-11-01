@@ -40,3 +40,7 @@ ifelse(is.na(na_example),0,na_example) #this code is in same line , they are att
 **sum(is.na(na_example))**
 
 The output![The output](images/Screenshot_6.png)
+
+# (d)
+
+As you can see the (d) part has been completed :)
