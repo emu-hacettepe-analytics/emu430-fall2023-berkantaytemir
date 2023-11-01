@@ -6,20 +6,15 @@ sidebar: false
 # Education
 
 -   B.S., Industrial Engineering, Hacettepe University, Turkey, ongoing.
+-   Westsächsischen Hochschule Zwickau 03.23-08.23
 
 # Work Experience
 
-## Employements
-
-1.  Firm xxx, position xx, year xxx
-
-2.  Firm yyy, position yyy, year yyy
-
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+1.  Sedat Tahir - Cook 07.22-08.22
 
-2.  Firm bbb, position yyy, year yyy
+2.  TUSAŞ 08.23-09.23
 
 # Projects
 
@@ -28,3 +23,15 @@ sidebar: false
 R, Quarto, Git, Python
 
 # Hobbies
+
+-   Tennis
+
+-   Table Tennis
+
+-   Golf
+
+-   Kayaking
+
+# CV
+
+You can find my cv in the following link : <https://drive.google.com/file/d/16TwFEMdaIWHlStYk1D-0Vf1y2B9Eg6mw/view>
