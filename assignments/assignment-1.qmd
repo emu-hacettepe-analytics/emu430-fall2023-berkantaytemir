@@ -2,7 +2,7 @@
 title: "Assignment 1"
 ---
 
-# (a) 
+# (a)
 
 **I was watching this video :<https://www.youtube.com/watch?v=qPk0YEKhqB8&list=PLqzoL9-eJTNBDdKgJgJzaQcY6OXmsXAHU&index=4>. It shows us how to take datas from an excel sheet. Basically to take the excel data , we need to convert the excel data into CSV ( Comma Seperated Values) or txt so that we can assign the datas by using this format :**
 
@@ -22,24 +22,23 @@ title: "Assignment 1"
 
 # (c)
 
-The input:
+```{r}
 
-**install.packages("dslabs")**
+library(dslabs)
 
-**library(dslabs)**
+head("na_example")
 
-**head("na_example")**
+print(na_example)
+sum(is.na(na_example))
 
-**print(na_example)**
+no_na_example<-ifelse(is.na(na_example),0,na_example) 
 
-**str(na_example) no_na_example\<-\
-ifelse(is.na(na_example),0,na_example) #this code is in same line , they are attached but due to the lack of space in R there is a second paragraph**
+print(no_na_example)
+sum(is.na(no_na_example))
 
-**print(no_na_example)**
 
-**sum(is.na(na_example))**
 
-The output![The output](images/Screenshot_6.png)
+```
 
 # (d)
 
