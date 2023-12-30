@@ -1,9 +1,258 @@
 ---
-title: "Assignment 2"
+title: "Assignment 2- Web Scraping of Turkish Movies from IMDb"
 ---
 
-# Assignment 2
+# Web Scraping of Turkish Movies from IMDb
+
+Before I move on to code explanation part , I want to indicate that there is an additional movie that has been added to IMDB list . So the data set should be 470 not 469 :)
+
+## Question 1. 
+
+Using the filters on https://m.imdb.com/search, list all Turkish movies with more
+than 2500 reviews, and save the URLs.
+
+Ans: Do not forget to read the libraries !
 
 ```{r}
-1 + 1
+library(tidyverse) # for everything :)
+library(rvest) # for HTML scraping
+library(stringr)
+library(dplyr)
+data_pages <- c(
+  "https://m.imdb.com/search/title/?title_type=feature&release_date=1900-12-31,2009-12-31&num_votes=2500,2147483647&country_of_origin=TR&count=250",
+  "https://m.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2023-12-31&num_votes=2500,2147483647&country_of_origin=TR&count=250"
+)
+all_title_names <- list()
+all_years <- list()
+all_durations <- list()
+all_ratings <- list()
+all_votes <- list()
+for (data in data_pages) {
+  page <- read_html(data)
+  
+  title_names <- page %>% html_nodes('.ipc-title__text') %>% html_text()
+  all_title_names[[length(all_title_names) + 1]] <- title_names
+  
+  Year <- page %>% html_nodes(".sc-43986a27-7.dBkaPT.dli-title-metadata") %>% html_text()
+  all_years[[length(all_years) + 1]] <- Year
+  
+  Durations <- page %>% html_nodes(".dli-title-metadata-item:nth-child(2)") %>% html_text()
+  all_durations[[length(all_durations) + 1]] <- Durations
+  
+  Ratings <- page %>% html_nodes(".ratingGroup--imdb-rating") %>% html_text()
+  all_ratings[[length(all_ratings) + 1]] <- Ratings
+  
+  Votes <- page %>% html_nodes(".kRnqtn") %>% html_text()
+  all_votes[[length(all_votes) + 1]] <- Votes
+}
+df_title_names <- data.frame(title_names = unlist(all_title_names))
+df_years <- data.frame(Year = unlist(all_years))
+df_durations <- data.frame(Durations = unlist(all_durations))
+df_ratings <- data.frame(Ratings = unlist(all_ratings))
+df_votes <- data.frame(Votes = unlist(all_votes))
+df_title_names
+df_years
+df_durations
+df_ratings
+df_votes
+
 ```
+
+## Question 2.
+
+Start web scrapping to create a Data Frame with columns: Title, Year, Duration,
+Rating, Votes
+
+Ans:
+
+```{r}
+df_title_names <- data.frame(title_names = unlist(all_title_names))
+df_title_names <- (tail(head(df_title_names,-1),-1))
+df_title_names <- as.character(df_title_names[[1]])
+Titles <- gsub("^\\d+\\.\\s*", "", df_title_names)
+indices_to_remove <- str_detect(Titles, "Recently viewed|Advanced search")
+Titles <- Titles[!indices_to_remove]
+
+
+
+df_years <- data.frame(Year = unlist(all_years))
+df_years <- as.character(df_years[[1]])
+Years <- as.numeric(str_extract(df_years, "\\d{4}"))
+
+
+df_durations <- data.frame(Durations = unlist(all_durations))
+df_durations <- as.character(df_durations[[1]])
+hours <- str_extract(df_durations, "\\d+h") %>% str_replace("h", "") %>% as.numeric()
+hours[is.na(hours)] <- 0
+minutes <- str_extract(df_durations, "\\d+m") %>% str_replace("m", "") %>% as.numeric()
+minutes[is.na(minutes)] <- 0
+Durations <- hours * 60 + minutes
+
+df_ratings <- data.frame(Ratings = unlist(all_ratings))
+df_ratings <- as.character(df_ratings[[1]])
+Ratings <- as.numeric(gsub("^(\\d+\\.?\\d*).*", "\\1", df_ratings))
+
+
+df_votes <- data.frame(Votes = unlist(all_votes))
+df_votes<-as.character(df_votes[[1]])
+Votes <- as.numeric(gsub("\\D", "", df_votes))
+
+
+### Creating a dataframe###
+movie_data <- data.frame(Title=Titles, Year=Years , Duration=Durations , Rating=Ratings, Vote=Votes)
+movie_data
+```
+
+## Question 3.
+
+### 3.a
+
+Arrange your data frame in descending order by Rating. Present the top 5 and
+bottom 5 movies based on user ratings. Have you watched any of these movies? Do
+you agree or disagree with their current IMDb Ratings?
+
+Ans: I'm not sure about the first 5 but the last 5 , especially the last movie , I have to admit it's the worst :)
+
+```{r}
+top5_movies <- movie_data %>% arrange(desc(Ratings)) %>% head(5)
+bottom5_movies <- movie_data %>% arrange(desc(Ratings)) %>% tail(5)
+top5_movies
+bottom5_movies
+```
+
+### 3.b
+
+Check the ratings of 2-3 of your favorite movies. What are their standings?
+
+Ans:
+
+My favorite movies are indicated as "favorite_movies" , you are gonna see my favorite movies ratings , votes and etc.
+
+```{r}
+favorite_movies <- c("A.R.O.G","Hababam Sinifi","G.O.R.A.")
+favorite_movies_data <- movie_data %>% filter(Title %in% favorite_movies)
+favorite_movies_data
+```
+
+### 3.c
+
+Considering that audience rating is a crucial indicator of movie quality, what can
+you infer about the average ratings of Turkish movies over the years? Calculate yearly
+rating averages and plot them as a scatter plot. Hint: Use functions like group_by(),
+summarise(), mean(), ggplot(), geom_point(). Similarly, plot the number of
+movies over the years. You might observe that using yearly averages could be misleading due to the increasing number of movies each year. As an alternative solution,
+plot box plots of ratings over the years (each year having a box plot showing statistics
+about the ratings of movies in that year). What insights do you gather from the box
+plot?
+
+Ans:
+
+When we looked at the average ratings of Turkish movies over the years, we found some interesting insights. Initially, we calculated the yearly average ratings and plotted them as a scatter plot. However, we noticed that this approach might be misleading due to the increasing number of movies each year.
+
+As an alternative, we opted for box plots to showcase the distribution of ratings over the years. This allowed us to observe the spread, median, and outliers for each year. It became evident that while average ratings provide a general trend, box plots offer a more nuanced view, revealing the variation and concentration of ratings within each year. This approach provides a richer understanding of how ratings are distributed across different years in Turkish cinema.
+
+```{r}
+#3.c
+movie_data$Year <- as.numeric(movie_data$Year)
+# 3.c.1. Calculate yearly rating averages
+average_ratings <- movie_data %>%
+  group_by(Year) %>%
+  summarise(AverageRating = mean(Rating),
+            NumberOfMovies = n())
+
+# 3.c.2. Plot yearly rating averages as a scatter plot
+ggplot(average_ratings, aes(x = Year, y = AverageRating, size = NumberOfMovies)) +
+  geom_point() +
+  labs(title = "Yearly Average Ratings of Turkish Movies",
+       x = "Year",
+       y = "Average Rating")
+
+# 3.c.3. Plot the number of movies over the years
+ggplot(average_ratings, aes(x = Year, y = NumberOfMovies)) +
+  geom_point() +
+  labs(title = "Number of Turkish Movies Over the Years",
+       x = "Year",
+       y = "Number of Movies")
+
+# 3.c.4. Plot box plots of ratings over the years
+ggplot(movie_data, aes(x = factor(Year), y = Rating)) +
+  geom_boxplot() +
+  labs(title = "Box Plots of Ratings Over the Years",
+       x = "Year",
+       y = "Rating") +
+  theme(axis.text.x = element_text(angle = 70, hjust = 1))
+```
+
+### 
+3.d
+
+Do you believe there is a relationship between the number of votes a movie received
+and its rating? Investigate the correlation between Votes and Ratings
+
+Ans:
+
+I have seen that there a function in R called "cor" which indicates correlation between two data sets or vectors . So I have tried that method to see whether they have a correlation or not ?
+
+```{r}
+correlation <- cor(movie_data$Vote, movie_data$Rating)
+correlation
+```
+
+The correlation coefficient can be inside in interval \[-1,1\] the correlation of close to 1 shows us there is a positive linear correlation between the data sets or getting close to -1 shows us there is a negative linear correlation between the data sets. if it gets close 0 zero we can say that the power of the correlation gets lower. So 0.13 indicates that there is a slight correlation between them.
+
+## Question 4.
+
+Repeat steps 1 and 2 for a different advanced IMDb search. This time, find Turkish
+movies that are in the top 1000 movies on IMDb. Perform similar scraping to create
+another DataFrame with only the columns: Title, Year.
+• Use IMDb\'s Advanced Title Search interface with The Title Type set to \"Movie\" only,
+the Country set to \"Turkey\" with the option \"Search country of origin only\" active,
+and the Awards & Recognation set to \"IMDB Top 1000\". You should find a total of
+11 movies.
+• Note that you now have a new data frame with Turkish movies in the top 1000,
+containing only the title and year. Use your initial data frame and an appropriate
+join operation to fill in the duration, rating, and votes attributes of the new data
+frame.
+• Order the 11 movies based on their Rank. Are these the same first high-rated 11
+movies in your initial data frame? If yes, does this imply that IMDb uses rankings
+alone to determine their top 1000 movie list? If not, what does this imply?
+
+Ans:
+
+1.  I conducted another IMDb search, this time targeting Turkish movies in the top 1000. After some web scraping magic, I ended up with a fresh dataset containing only the titles and years of these highly-rated movies.
+
+2.  To enrich this dataset, I merged it with our original data, filling in the missing details like duration, rating, and votes.
+
+3.  Next, I arranged these 11 top-rated Turkish movies based on their IMDb rank. Now, here's the interesting part: Yes, the list is composed of the same movies as in the initial dataset, indicating that IMDb doesn't solely rely on rankings to compile their top 1000. While ranking plays a role, other factors like user ratings and votes also contribute, resulting in a mix of familiar high-rated films in the top 1000 list.
+
+    ```{r}
+    #4.Web Scraping
+    imdb_url <- "https://m.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR"
+    page <- read_html(imdb_url)
+    titles <- page %>% html_nodes(".ipc-title__text") %>% html_text()
+    indices_to_remove <- str_detect(titles, "Recently viewed|Advanced search")
+    titles <- titles[!indices_to_remove]
+    titles <- gsub("^\\d+\\.\\s*", "", titles)
+    years <- page %>% html_nodes(".sc-43986a27-7.dBkaPT.dli-title-metadata") %>% html_text() %>% str_extract("\\d{4}")
+    imdb_top1000_movies <- data.frame(Title = titles, Year = as.numeric(years))
+    print(imdb_top1000_movies)
+
+    #4. Fill The Remaining Information by using previous dataframe
+    result_df <- left_join(imdb_top1000_movies, movie_data, by = "Title")
+
+    #4. cOmparison of the datas
+    top11_initial <- result_df %>%
+      arrange(desc(Rating)) %>%
+      head(11)
+    # Filter the top 11 movies from the new data frame based on IMDb ranking
+    is_equal <- all.equal(top11_initial, movie_data)
+
+    if (is.logical(is_equal) && is_equal) {
+      print("The top 11 movies are the same in both data frames.")
+    } else {
+      print("The top 11 movies are different in the two data frames.")
+    }
+    # Compare the two data frames
+    top11_movies <- movie_data %>% arrange(desc(Ratings)) %>% head(11)
+    top11_movies
+    ```
